@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public ParticleSystem damageEffect;
     Rigidbody2D rigidbody2d;
     void Awake()
     {
@@ -17,12 +18,18 @@ public class Projectile : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other)
     {
         EnemyController e = other.collider.GetComponent<EnemyController>();
+        HardEnemyController f = other.collider.GetComponent<HardEnemyController>();
         if (e != null)
         {
             e.Fix();
         }
-        
+        else if (f != null)
+        {
+            f.Fix();
+        }
+
         Debug.Log("Projectile Collision with " + other.gameObject);
+        ParticleSystem damageParticleObject = Instantiate(damageEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 

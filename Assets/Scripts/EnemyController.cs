@@ -16,21 +16,29 @@ public class EnemyController : MonoBehaviour
     bool broken = true;
    
     Animator animator;
-
+    public int count;
+    private RubyController rubyController;
+    
     void Start()
     {
 
         rigidbody2D = GetComponent<Rigidbody2D>();
         timer = changeTime;
         animator = GetComponent<Animator>();
+        
+        GameObject rubyControllerObject = GameObject.FindWithTag("RubyController");
+        if (rubyControllerObject != null)
+        {
+            rubyController = rubyControllerObject.GetComponent<RubyController>();
+        }
     }
 
     void Update()
     {
        if(!broken)
-        {
+       {
             return;
-        }
+       }
         
         timer -= Time.deltaTime;
         if (timer < 0)
@@ -53,7 +61,7 @@ public class EnemyController : MonoBehaviour
         
         if (vertical)
         { 
-            position.x = position.x + Time.deltaTime * speed * direction;
+            position.y = position.y + Time.deltaTime * speed * direction;
             animator.SetFloat("Move X", 0);
             animator.SetFloat("Move Y", direction);
         }
@@ -83,8 +91,12 @@ public class EnemyController : MonoBehaviour
         broken = false;
         rigidbody2D.simulated = false;
         animator.SetTrigger("Fixed");
-
         smokeEffect.Stop();
-
+        
+        if (rubyController != null)
+        {
+            rubyController = rubyController.GetComponent<RubyController>();
+            rubyController.ChangeScore(1);
+        }
     }
 }

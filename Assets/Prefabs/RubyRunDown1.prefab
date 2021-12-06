@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3105597794395828067}
   m_Layer: 8
   m_Name: RubyRunDown1
-  m_TagString: Untagged
+  m_TagString: RubyController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,10 +101,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   maxHealth: 5
+  scoreText: {fileID: 0}
+  winText: {fileID: 0}
+  winSound: {fileID: 8300000, guid: 24a3b864cec0f974d8aba8e394480be5, type: 3}
+  loseSound: {fileID: 8300000, guid: 4e392df183c7be34393d9a7e4d5a5358, type: 3}
   projectilePrefab: {fileID: 3003629156278012780, guid: 813f6c487d54b0d4491fba8b6f4d7ccc,
+    type: 3}
+  damageEffect: {fileID: 4375746344954821315, guid: 51aba84bf9fba7446baa8a6e4425e7a4,
     type: 3}
   throwSound: {fileID: 8300000, guid: 80d919cc70022684f9456154ed6dbb58, type: 3}
   hitSound: {fileID: 8300000, guid: 342dbb104c29d7b4f957775a01929a93, type: 3}
+  backgroundMusic: {fileID: 8300000, guid: 60d572b2d201df7479e795f80a2b3393, type: 3}
   timeInvincible: 2
 --- !u!50 &6067905908318052747
 Rigidbody2D:
